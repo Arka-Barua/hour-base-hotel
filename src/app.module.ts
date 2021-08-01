@@ -1,8 +1,13 @@
+import { RoomController } from './room/room.controller';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserController } from './user/user.controller';
+import { UserModule } from './user/user.module';
+import { PaymentModule } from './payment/payment.module';
+import { PaymentController } from './payment/payment.controller';
 
 @Module({
   imports: [
@@ -10,11 +15,19 @@ import { AppService } from './app.service';
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.POSTGRES_URL,
-      entities: ['dist/src/**/*.entity.js'],
+      entities: ['dist/**/*.entity.js'],
       synchronize: true,
+      logging: true,
     }),
+    UserModule,
+    PaymentModule,
   ],
-  controllers: [AppController],
+  controllers: [
+    AppController,
+    UserController,
+    RoomController,
+    PaymentController,
+  ],
   providers: [AppService],
 })
 export class AppModule {}
