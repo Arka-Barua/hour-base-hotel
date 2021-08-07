@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Booking } from './../booking/booking.entity';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { UserRole } from './user.role.enum';
 
 @Entity()
@@ -20,6 +21,9 @@ export class User {
 
   @Column({ unique: true, length: 10 })
   mobile: string;
+
+  @OneToMany(() => Booking, (booking) => booking.user)
+  bookings: Booking[];
 
   @Column({
     type: 'enum',

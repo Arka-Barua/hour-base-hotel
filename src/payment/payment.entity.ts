@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Booking } from './../booking/booking.entity';
+import { Column, Entity, OneToOne, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Payment {
@@ -6,19 +7,16 @@ export class Payment {
   id: string;
 
   @Column()
-  bookingId: string;
-
-  @Column()
-  userId: number;
-
-  @Column()
   amount: number;
 
   @Column()
   date: Date;
 
-  @Column({ type: 'simple-array' })
-  type: string[];
+  @Column()
+  type: string;
+
+  @OneToOne(() => Booking, (booking) => booking.payment)
+  booking: Booking;
 }
 
 // id, bookingId, user, amount, date, type.

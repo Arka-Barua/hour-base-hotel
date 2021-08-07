@@ -1,3 +1,8 @@
+import { CategoryController } from './category/category.controller';
+import { BookingController } from './booking/booking.controller';
+import { CategoryModule } from './category/category.module';
+import { BookingModule } from './booking/booking.module';
+import { RoomModule } from './room/room.module';
 import { RoomController } from './room/room.controller';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -20,13 +25,18 @@ import { PaymentController } from './payment/payment.controller';
       logging: true,
     }),
     UserModule,
+    RoomModule,
     PaymentModule,
+    BookingModule,
+    CategoryModule,
   ],
   controllers: [
     AppController,
     UserController,
     RoomController,
     PaymentController,
+    BookingController,
+    CategoryController,
   ],
   providers: [AppService],
 })

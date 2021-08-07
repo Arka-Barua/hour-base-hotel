@@ -1,4 +1,5 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Category } from './../category/category.entity';
+import { Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Room {
@@ -6,16 +7,13 @@ export class Room {
   id: string;
 
   @Column()
-  categoryId: number;
-
-  @Column()
   roomNumber: number;
 
   @Column()
   status: string;
 
-  // @Column()
-  // bookings: Booking[];
+  @ManyToOne(() => Category, (category) => category.rooms)
+  category: Category;
 }
 
 // id, category, number, status, bookings[].
