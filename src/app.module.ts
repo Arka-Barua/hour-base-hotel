@@ -13,7 +13,6 @@ import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
 import { PaymentModule } from './payment/payment.module';
 import { PaymentController } from './payment/payment.controller';
-import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
@@ -40,7 +39,6 @@ import { AuthModule } from './auth/auth.module';
     PaymentController,
     BookingController,
     CategoryController,
-    AuthController,
   ],
   providers: [AppService],
 })
