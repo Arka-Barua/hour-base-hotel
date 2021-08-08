@@ -1,9 +1,9 @@
-import { Category } from './../category/category.entity';
-import { Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
+import { CategoryEntity } from './../category/category.entity';
+import { Entity, Column, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Room {
-  @PrimaryColumn({ type: 'uuid' })
+export class RoomEntity {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -12,8 +12,8 @@ export class Room {
   @Column()
   status: string;
 
-  @ManyToOne(() => Category, (category) => category.rooms)
-  category: Category;
+  @ManyToOne(() => CategoryEntity, (categoryEntity) => categoryEntity.rooms)
+  category: CategoryEntity;
 }
 
 // id, category, number, status, bookings[].

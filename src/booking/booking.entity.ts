@@ -1,18 +1,18 @@
-import { User } from './../user/user.entity';
-import { Payment } from './../payment/payment.entity';
+import { UserEntity } from './../user/user.entity';
+import { PaymentEntity } from './../payment/payment.entity';
 import {
   Column,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { BookingStatus } from './booking.status.enum';
 
 @Entity()
-export class Booking {
-  @PrimaryColumn({ type: 'uuid' })
+export class BookingEntity {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -27,12 +27,12 @@ export class Booking {
   @Column()
   paymentStatus: boolean;
 
-  @OneToOne(() => Payment, (payment) => payment.booking)
+  @OneToOne(() => PaymentEntity, (paymentEntity) => paymentEntity.booking)
   @JoinColumn()
-  payment: Payment;
+  payment: PaymentEntity;
 
-  @ManyToOne(() => User, (user) => user.bookings)
-  user: User;
+  @ManyToOne(() => UserEntity, (userEntity) => userEntity.bookings)
+  user: UserEntity;
 
   @Column({
     type: 'enum',

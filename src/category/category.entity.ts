@@ -1,9 +1,9 @@
-import { Room } from './../room/room.entity';
-import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { RoomEntity } from './../room/room.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Category {
-  @PrimaryColumn({ type: 'uuid' })
+export class CategoryEntity {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -18,8 +18,8 @@ export class Category {
   @Column()
   maxPeople: number;
 
-  @OneToMany(() => Room, (room) => room.category)
-  rooms: Room[];
+  @OneToMany(() => RoomEntity, (roomEntity) => roomEntity.category)
+  rooms: RoomEntity[];
   // @Column({type: ''} )
   // rooms: Room[];
 }

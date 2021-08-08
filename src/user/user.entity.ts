@@ -1,17 +1,14 @@
-import { Booking } from './../booking/booking.entity';
-import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { BookingEntity } from './../booking/booking.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { UserRole } from './user.role.enum';
 
 @Entity()
-export class User {
-  @PrimaryColumn({ type: 'uuid' })
+export class UserEntity {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
   name: string;
-
-  @Column()
-  username: string;
 
   @Column({ unique: true })
   email: string;
@@ -19,11 +16,11 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ unique: true, length: 10 })
+  @Column({ unique: true, length: 10, nullable: true })
   mobile: string;
 
-  @OneToMany(() => Booking, (booking) => booking.user)
-  bookings: Booking[];
+  @OneToMany(() => BookingEntity, (bookingEntity) => bookingEntity.user)
+  bookings: BookingEntity[];
 
   @Column({
     type: 'enum',

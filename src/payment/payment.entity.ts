@@ -1,9 +1,9 @@
-import { Booking } from './../booking/booking.entity';
-import { Column, Entity, OneToOne, PrimaryColumn } from 'typeorm';
+import { BookingEntity } from './../booking/booking.entity';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Payment {
-  @PrimaryColumn({ type: 'uuid' })
+export class PaymentEntity {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -15,8 +15,8 @@ export class Payment {
   @Column()
   type: string;
 
-  @OneToOne(() => Booking, (booking) => booking.payment)
-  booking: Booking;
+  @OneToOne(() => BookingEntity, (bookingEntity) => bookingEntity.payment)
+  booking: BookingEntity;
 }
 
 // id, bookingId, user, amount, date, type.
