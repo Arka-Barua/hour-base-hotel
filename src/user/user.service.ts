@@ -20,6 +20,7 @@ export class UserService {
     newUser.name = user.name;
     newUser.email = user.email;
     newUser.password = passwordHash;
+    newUser.mobile = user.mobile;
     const savedUser = await this.userRepository.save(newUser);
     const { id, name } = savedUser;
     return { id, name };

@@ -16,10 +16,8 @@ export class UserEntity {
   @Column()
   password: string;
 
-  @Column({ unique: true, nullable: true })
+  @Column({ unique: true })
   mobile: string;
-  // ^(?:\+?88)?01[135-9]\d{8}$ bd mobile regex check
-  // /^(?:\+88|88)?(01[3-9]\d{8})$/ correct regex
 
   @OneToMany(() => BookingEntity, (bookingEntity) => bookingEntity.user)
   bookings: BookingEntity[];
