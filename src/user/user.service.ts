@@ -30,9 +30,6 @@ export class UserService {
     const { password, ...rest } = await this.findOne(user.email);
     return rest;
   }
-  // async login(user: any): Promise<any> {
-  //   return this.authService.login(user);
-  // }
 
   async findOne(email: string): Promise<UserEntity | undefined> {
     return this.userRepository.findOne({ email: email });
@@ -41,28 +38,4 @@ export class UserService {
   async findById(id: string): Promise<UserEntity | undefined> {
     return this.userRepository.findOne({ id });
   }
-  // async login(@Request() req): Promise<any> {
-  //   return {
-  //     userId: req.user.id,
-  //     token: this.authService.generateJWT(req.user),
-  //   };
-  // }
-
-  // async login(user: LoginUserDto): Promise<any> {
-  //   const { id, email } = await this.userRepository.findOne(user.email);
-  //   const reqUser = { id, email };
-  //   return this.authService.login(reqUser);
-  // }
-  // async login(user: LoginUserDto): Promise<any> {
-  //   const loginUser = await this.validateUser(user.email, user.password);
-  //   if (loginUser) {
-  //     return this.authService.generateJWT(loginUser.id);
-  //   } else {
-  //     return 'Invalid Credentials';
-  //   }
-  // }
-
-  // findByName(email: string): Promise<UserEntity> {
-  //   return this.userRepository.findOne({ user. });
-  // }
 }

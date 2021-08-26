@@ -13,13 +13,11 @@ export class CategoryEntity {
   services: string[];
 
   @Column()
-  price: number;
+  price: string;
 
   @Column()
-  maxPeople: number;
+  maxPeople: string;
 
   @OneToMany(() => RoomEntity, (roomEntity) => roomEntity.category)
   rooms: RoomEntity[];
-  // @Column({type: ''} )
-  // rooms: Room[];
 }
