@@ -10,6 +10,10 @@ export class CategoryService {
     private categoryRepository: Repository<CategoryEntity>,
   ) {}
 
+  async getAllCategory(): Promise<any> {
+    return this.categoryRepository.find();
+  }
+
   async createCategory(body): Promise<any> {
     const newCategory = new CategoryEntity();
     newCategory.name = body.name;
