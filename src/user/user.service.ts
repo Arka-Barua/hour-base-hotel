@@ -25,6 +25,11 @@ export class UserService {
     return { id, name };
   }
 
+  async getProfile(user: any): Promise<any> {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...rest } = await this.findOne(user.email);
+    return rest;
+  }
   // async login(user: any): Promise<any> {
   //   return this.authService.login(user);
   // }

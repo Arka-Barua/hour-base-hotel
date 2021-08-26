@@ -8,9 +8,9 @@ import { Auth } from './auth/decorators/auth.decorator';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('protected')
   // @UseGuards(JwtAuthGuard, RolesGuard)
   // @Roles(Role.ADMIN)
+  @Get('protected')
   @Auth(Role.ADMIN)
   getHello(@CurrentUser() user): string {
     return user;

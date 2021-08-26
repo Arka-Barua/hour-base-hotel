@@ -1,12 +1,12 @@
 import { RolesGuard } from './guards/roles.guard';
-import { JwtStrategy } from './jwt.strategy';
+import { JwtStrategy } from './strategy/jwt.strategy';
 import { UserModule } from './../user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { Module, forwardRef } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { PassportModule } from '@nestjs/passport';
-import { LocalStrategy } from './local.strategy';
+import { LocalStrategy } from './strategy/local.strategy';
 
 @Module({
   imports: [
