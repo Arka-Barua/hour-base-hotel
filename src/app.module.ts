@@ -1,3 +1,4 @@
+import { APP_GUARD } from '@nestjs/core';
 import { CategoryController } from './category/category.controller';
 import { BookingController } from './booking/booking.controller';
 import { CategoryModule } from './category/category.module';
@@ -14,6 +15,7 @@ import { UserModule } from './user/user.module';
 import { PaymentModule } from './payment/payment.module';
 import { PaymentController } from './payment/payment.controller';
 import { AuthModule } from './auth/auth.module';
+import { RolesGuard } from './auth/guards/roles.guard';
 
 @Module({
   imports: [
@@ -25,12 +27,12 @@ import { AuthModule } from './auth/auth.module';
       synchronize: true,
       logging: true,
     }),
+    AuthModule,
     UserModule,
     RoomModule,
     PaymentModule,
     BookingModule,
     CategoryModule,
-    AuthModule,
   ],
   controllers: [
     AppController,
