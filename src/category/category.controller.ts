@@ -1,8 +1,7 @@
 import { CategoryService } from './category.service';
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { Role } from 'src/user/user.role.enum';
-import { Get } from '@nestjs/common';
 
 @Controller('category')
 export class CategoryController {
