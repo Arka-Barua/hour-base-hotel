@@ -1,4 +1,3 @@
-import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './guards/roles.guard';
 import { JwtStrategy } from './jwt.strategy';
 import { UserModule } from './../user/user.module';

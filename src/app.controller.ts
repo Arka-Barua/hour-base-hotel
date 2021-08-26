@@ -1,6 +1,7 @@
+import { CurrentUser } from './auth/decorators/current-user.decorator';
 import { Role } from './user/user.role.enum';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { Controller, Get, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Roles } from './auth/decorators/role.decorator';
 import { RolesGuard } from './auth/guards/roles.guard';
@@ -12,7 +13,7 @@ export class AppController {
   @Get('protected')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.ADMIN)
-  getHello(@Request() req): string {
-    return req.user;
+  getHello(@CurrentUser() user): string {
+    return user;
   }
 }
