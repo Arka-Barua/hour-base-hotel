@@ -14,11 +14,11 @@ export class CategoryService {
     return this.categoryRepository.find();
   }
 
-  async createCategory(body): Promise<any> {
+  async createCategory(body: any): Promise<any> {
     const newCategory = new CategoryEntity();
     newCategory.name = body.name;
     newCategory.maxPeople = body.maxPeople;
-    newCategory.price = body.price;
+    newCategory.price_per_hour = body.price_per_hour;
     newCategory.services = body.services;
     return this.categoryRepository.save(newCategory);
   }

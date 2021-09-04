@@ -1,5 +1,5 @@
 import { RegisterUserDto } from './user.dto';
-import { AuthService } from './../auth/auth.service';
+import { AuthService } from '../auth/auth.service';
 import { UserEntity } from './user.entity';
 import { Injectable, forwardRef, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';

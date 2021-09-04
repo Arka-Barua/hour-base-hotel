@@ -13,7 +13,7 @@ export class CategoryEntity {
   services: string[];
 
   @Column()
-  price: string;
+  price_per_hour: string;
 
   @Column()
   maxPeople: string;
