@@ -15,4 +15,9 @@ export class AppController {
   getHello(@CurrentUser() user): string {
     return user;
   }
+
+  @Get('hey')
+  getHey(): any {
+    return { title: 'hey', name: 'Arka' };
+  }
 }
