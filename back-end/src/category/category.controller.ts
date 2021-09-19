@@ -22,18 +22,19 @@ export class CategoryController {
 
   @Post('/create')
   @Auth(Role.ADMIN)
-  async createCategory(@Body() body): Promise<any> {
-    return this.catagoryService.createCategory(body);
+  @UseInterceptors(FilesInterceptor('photos'))
+  async createCategory(@UploadedFiles() files, @Body() body): Promise<any> {
+    return this.catagoryService.createCategory(files, body);
   }
 
-  @Post('t')
-  @UseInterceptors(FilesInterceptor('photos'))
-  uploadFile(@UploadedFiles() files, @Body() body: any) {
-    const rebody = body;
-    const filenames = files.map(
-      (file: Express.Multer.File) => file.originalname,
-    );
-    rebody.files = filenames;
-    return body;
-  }
+  // @Post('t')
+  // @UseInterceptors(FilesInterceptor('photos'))
+  // uploadFile(@UploadedFiles() files, @Body() body: any) {
+  //   const rebody = body;
+  //   const filenames = files.map(
+  //     (file: Express.Multer.File) => file.originalname,
+  //   );
+  //   rebody.files = filenames;
+  //   return body;
+  // }
 }

@@ -9,7 +9,7 @@ export class RoomEntity {
   @Column()
   roomNumber: number;
 
-  @Column()
+  @Column({ nullable: true })
   status: string;
 
   @ManyToOne(() => CategoryEntity, (categoryEntity) => categoryEntity.rooms)

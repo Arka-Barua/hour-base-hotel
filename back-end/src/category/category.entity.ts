@@ -18,6 +18,9 @@ export class CategoryEntity {
   @Column()
   maxPeople: string;
 
+  @Column({ type: 'simple-array', nullable: true })
+  images: string[];
+
   @OneToMany(() => RoomEntity, (roomEntity) => roomEntity.category)
   rooms: RoomEntity[];
 }

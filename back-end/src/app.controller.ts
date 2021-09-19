@@ -16,8 +16,8 @@ export class AppController {
     return user;
   }
 
-  @Get('hey')
+  @Get('hello')
   getHey(): any {
-    return { title: 'hey', name: 'Arka' };
+    return { title: 'Hello', name: 'World' };
   }
 }
