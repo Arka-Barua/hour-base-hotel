@@ -1,0 +1,19 @@
+{
+  "name": "hour-based-hotel",
+  "version": "1.0.0",
+  "description": "This is hour based hotel management app",
+  "main": "index.js",
+  "repository": "https://github.com/Arka-Barua/hour-base-hotel.git",
+
+  "author": "Arka-dev <40537823+Arka-Barua@users.noreply.github.com>",
+  "license": "MIT",
+
+  "scripts": {
+    "server": "cd back-end && yarn start:dev",
+    "client": "cd front-end && yarn dev",
+    "build": "cd back-end && yarn build",
+    "front": "cd front-end && yarn",
+    "back": "cd back-end && yarn",
+    "dev": "concurrently \"yarn server\" \"yarn client\""
+  }
+}
