@@ -6,21 +6,23 @@ export class CategoryEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ unique: true })
   name: string;
 
   @Column({ type: 'simple-array' })
   services: string[];
 
   @Column()
-  price_per_hour: string;
+  price_per_hour: number;
 
   @Column()
-  maxPeople: string;
+  maxPeople: number;
 
-  @Column({ type: 'simple-array', nullable: true })
+  @Column({ type: 'simple-array', nullable: false })
   images: string[];
 
-  @OneToMany(() => RoomEntity, (roomEntity) => roomEntity.category)
+  @OneToMany(() => RoomEntity, (roomEntity) => roomEntity.category, {
+    onDelete: 'CASCADE',
+  })
   rooms: RoomEntity[];
 }

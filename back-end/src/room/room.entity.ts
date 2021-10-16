@@ -12,7 +12,9 @@ export class RoomEntity {
   @Column({ nullable: true })
   status: string;
 
-  @ManyToOne(() => CategoryEntity, (categoryEntity) => categoryEntity.rooms)
+  @ManyToOne(() => CategoryEntity, (categoryEntity) => categoryEntity.rooms, {
+    onDelete: 'SET NULL',
+  })
   category: CategoryEntity;
 }
 
