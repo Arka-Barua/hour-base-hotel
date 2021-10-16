@@ -26,16 +26,21 @@ export class AuthService {
     const user = await this.userService.findOne(email);
     const match = await this.comparePassword(password, user.password);
     if (user && match) {
-      const { id, name, roles } = user;
-      return { id, name, roles };
+      const { id, firstname, lastname, roles } = user;
+      return { id, firstname, lastname, roles };
     }
     return null;
   }
 
   async login(user: any) {
+    const { id, firstname, lastname, roles } = await this.userService.findById(
+      user.id,
+    );
     const payload = { sub: user.id };
     return {
       access_token: this.jwtService.sign(payload),
+      user: { id, firstname, lastname },
+      roles,
     };
   }
 }
