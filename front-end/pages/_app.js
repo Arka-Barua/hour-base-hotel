@@ -1,19 +1,18 @@
-import AdminLayout from "../components/AdminLayout";
-import SignLayout from "../components/SignLayout";
-import UserLayout from "../components/UserLayout";
+import { ThemeProvider } from "@mui/material";
+import { AuthWrapper } from "../context/AuthContext";
 import "../styles/globals.css";
-const layouts = {
-  admin: AdminLayout,
-  user: UserLayout,
-  sign: SignLayout,
-};
+import theme from "../styles/theme";
+import SimpleReactLightbox from "simple-react-lightbox";
 
 const MyApp = ({ Component, pageProps }) => {
-  const Layout = layouts[Component.layout] || ((children) => <>{children}</>);
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <AuthWrapper>
+      <ThemeProvider theme={theme}>
+        <SimpleReactLightbox>
+          <Component {...pageProps} />
+        </SimpleReactLightbox>
+      </ThemeProvider>
+    </AuthWrapper>
   );
 };
 
