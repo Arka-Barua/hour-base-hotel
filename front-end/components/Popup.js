@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import Paper from "@mui/material/Paper";
+import theme from "../styles/theme";
 
 const Popup = (props) => {
   const {
@@ -24,7 +25,9 @@ const Popup = (props) => {
       fullScreen={fullScreen}
       TransitionComponent={TransitionComponent}
     >
-      <DialogTitle>
+      <DialogTitle
+        sx={{ background: theme.palette.primary.main, color: "white" }}
+      >
         <Box style={{ display: "flex" }}>
           <Typography variant="h5" sx={{ flexGrow: 1, fontWeight: "bold" }}>
             {title}
