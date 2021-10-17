@@ -19,3 +19,18 @@ export class CreateCategoryDto {
   })
   services: string[];
 }
+export class EditCategoryDto {
+  @IsString()
+  name: string;
+
+  @IsString()
+  maxPeople: number;
+
+  @IsString()
+  price_per_hour: number;
+
+  @MaxLength(20, {
+    each: true,
+  })
+  services: string[];
+}
