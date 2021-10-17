@@ -6,11 +6,13 @@ import { useState } from "react";
 import Popup from "./Popup";
 import { SRLWrapper } from "simple-react-lightbox";
 import EditCategoryForm from "./EditCategoryForm";
+import DeleteCategory from "./DeleteCategory";
 
 const SelectedCategories = ({ selectionModel, rows }) => {
   const selected = rows.filter((row) => selectionModel.includes(row.id));
   const [openPopup, setOpenPopup] = useState(false);
   const [openEditPopup, setOpenEditPopup] = useState(false);
+  const [openDeletePopup, setOpenDeletePopup] = useState(false);
   const [select, setSelect] = useState("");
 
   const selectedName = `${select.name}`;
@@ -43,6 +45,7 @@ const SelectedCategories = ({ selectionModel, rows }) => {
           </Button>
           <Button
             variant="contained"
+            sx={{ marginRight: 1 }}
             disableElevation
             onClick={() => {
               setOpenEditPopup(true);
@@ -50,6 +53,17 @@ const SelectedCategories = ({ selectionModel, rows }) => {
             }}
           >
             Edit
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            disableElevation
+            onClick={() => {
+              setOpenDeletePopup(true);
+              setSelect(selected[row]);
+            }}
+          >
+            Delete
           </Button>
         </Box>
       ))}
@@ -123,6 +137,7 @@ const SelectedCategories = ({ selectionModel, rows }) => {
       </Popup>
 
       {/* EditPopup  */}
+
       <Popup
         openPopup={openEditPopup}
         setOpenPopup={setOpenEditPopup}
@@ -133,6 +148,19 @@ const SelectedCategories = ({ selectionModel, rows }) => {
         <EditCategoryForm
           editableRow={select}
           setOpenEditPopup={setOpenEditPopup}
+        />
+      </Popup>
+
+      {/* DeletePopup */}
+      <Popup
+        openPopup={openDeletePopup}
+        setOpenPopup={setOpenDeletePopup}
+        title={`Delete ${selectedName}`}
+        draggable
+      >
+        <DeleteCategory
+          deletableRow={select}
+          setOpenDeletePopup={setOpenDeletePopup}
         />
       </Popup>
     </div>
