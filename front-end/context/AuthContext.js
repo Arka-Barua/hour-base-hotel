@@ -11,6 +11,7 @@ export function AuthWrapper({ children }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [verified, setVerified] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [expiredMessage, setExpiredMessage] = useState("");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -24,6 +25,8 @@ export function AuthWrapper({ children }) {
           localStorage.removeItem("user");
           localStorage.removeItem("role");
           setIsAuthenticated(false);
+          setExpiredMessage("Your session ended. Please sign in again");
+          router.replace("/signin");
         } else {
           setVerified(true);
           setIsAuthenticated(true);
@@ -51,6 +54,7 @@ export function AuthWrapper({ children }) {
         setIsAuthenticated,
         setVerified,
         setIsLoaded,
+        expiredMessage,
       }}
     >
       {children}

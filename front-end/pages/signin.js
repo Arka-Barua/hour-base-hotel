@@ -27,6 +27,7 @@ const SignIn = () => {
     setIsAdmin,
     setIsAuthenticated,
     setUser,
+    expiredMessage,
   } = useAuthContext();
   // const tap = (callback) => (value) => callback(value), value);
 
@@ -101,6 +102,7 @@ const SignIn = () => {
         >
           Sign In
         </Typography>
+        {expiredMessage ?? <p>{expiredMessage}</p>}
         <FormProvider {...methods}>
           <form
             onSubmit={methods.handleSubmit(formSubmitHandler)}
