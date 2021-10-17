@@ -3,7 +3,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CategoryEntity } from './category.entity';
-import * as fs from 'fs';
+import { deleteImages } from 'src/utils/DeleteImages';
 
 @Injectable()
 export class CategoryService {
@@ -25,10 +25,14 @@ export class CategoryService {
     });
   }
 
+  async findCategoryById(id: string): Promise<CategoryEntity> {
+    return this.categoryRepository.findOneOrFail(id);
+  }
+
   async createCategory(
     files: Array<Express.Multer.File>,
     body: CreateCategoryDto,
-  ): Promise<any> {
+  ): Promise<CategoryEntity> {
     if (files && files.length === 0) {
       throw new HttpException(
         {
@@ -49,7 +53,6 @@ export class CategoryService {
       );
     } else {
       console.log(files);
-
       const newCategory = new CategoryEntity();
       newCategory.name = body.name;
       newCategory.maxPeople = body.maxPeople;
@@ -64,8 +67,8 @@ export class CategoryService {
   async editCategory(
     files: Array<Express.Multer.File>,
     body: EditCategoryDto,
-    params,
-  ): Promise<any> {
+    id: string,
+  ): Promise<CategoryEntity> {
     const { name, maxPeople, price_per_hour, services } = body;
     if (files && files.length === 0) {
       throw new HttpException(
@@ -86,18 +89,8 @@ export class CategoryService {
         HttpStatus.BAD_REQUEST,
       );
     } else {
-      const selectedCategory = await this.categoryRepository.findOneOrFail({
-        id: params.id,
-      });
-
-      selectedCategory.images.forEach((img) => {
-        const imgpath = `upload\\categoryphoto\\${img}`;
-        fs.unlink(imgpath, (err) => {
-          if (err) return err;
-          console.log(err);
-        });
-      });
-
+      const selectedCategory = await this.findCategoryById(id);
+      deleteImages(selectedCategory);
       selectedCategory.name = name;
       selectedCategory.maxPeople = maxPeople;
       selectedCategory.price_per_hour = price_per_hour;
@@ -106,5 +99,11 @@ export class CategoryService {
       selectedCategory.images = filenames;
       return this.categoryRepository.save(selectedCategory);
     }
+  }
+
+  async deleteCategory(id: string): Promise<CategoryEntity> {
+    const selectedCategory = await this.findCategoryById(id);
+    deleteImages(selectedCategory);
+    return this.categoryRepository.remove(selectedCategory);
   }
 }

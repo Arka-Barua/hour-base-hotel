@@ -11,6 +11,7 @@ import {
   Param,
   Res,
   Patch,
+  Delete,
 } from '@nestjs/common';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { Role } from 'src/user/user.role.enum';
@@ -41,7 +42,7 @@ export class CategoryController {
   async createCategory(
     @UploadedFiles() files: Array<Express.Multer.File>,
     @Body() body: CreateCategoryDto,
-  ): Promise<any> {
+  ): Promise<CategoryEntity> {
     return this.catagoryService.createCategory(files, body);
   }
 
@@ -58,10 +59,16 @@ export class CategoryController {
   )
   async editCategory(
     @UploadedFiles() files: Array<Express.Multer.File>,
-    @Param() params,
+    @Param() { id },
     @Body() body: EditCategoryDto,
-  ): Promise<any> {
-    return this.catagoryService.editCategory(files, body, params);
+  ): Promise<CategoryEntity> {
+    return this.catagoryService.editCategory(files, body, id);
+  }
+
+  @Delete('/delete/:id')
+  @Auth(Role.ADMIN)
+  async deleteCategory(@Param() { id }): Promise<CategoryEntity> {
+    return this.catagoryService.deleteCategory(id);
   }
 
   @Get('/:imgpath')
