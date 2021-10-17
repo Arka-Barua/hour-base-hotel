@@ -39,14 +39,24 @@ const schema = yup.object({
     // .test("fileSize", "The file is too large", (value) => {
     //   return value[0] && value[0].size <= 1000000;
     // })
-    .test("type", "We only support image", (value) => {
-      const imgArray = Array.from(value);
-      imgArray && console.log(imgArray);
-      imgArray.map((img) => {
-        console.log(img.type);
-        if (img.type === "image/png" || "image/jpg" || "image/jpeg") return img;
-      });
-    }),
+    .test(
+      "type",
+      "We only support image with JPEG, JPG and PNG type",
+      (value) => {
+        const imgList = Array.from(value);
+        imgList && console.log(imgList);
+        const valid = (imgArray) => {
+          let accept = true;
+          imgArray.map((img) => {
+            console.log(img.type);
+            if (!["image/png", "image/jpg", "image/jpeg"].includes(img.type))
+              accept = false;
+          });
+          return accept;
+        };
+        return value && valid(imgList);
+      }
+    ),
 });
 
 const AddCategoryForm = ({ setOpenPopup }) => {
