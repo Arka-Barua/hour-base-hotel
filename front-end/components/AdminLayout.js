@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Drawer, List, ListItem, Toolbar } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import AdminHeader from "./AdminHeader";
+import Header from "./Header";
 import { Box } from "@mui/system";
 
 const drawerWidth = 200;
@@ -30,11 +30,19 @@ const AdminLayout = ({ children }) => {
   const menuItems = [
     {
       text: "Dashboard",
-      path: "/admin/dashboard",
+      path: "/admin",
     },
     {
       text: "Orders",
       path: "/admin/orders",
+    },
+    {
+      text: "Users",
+      path: "/admin/users",
+    },
+    {
+      text: "Categories",
+      path: "/admin/categories",
     },
     {
       text: "Rooms",
@@ -43,7 +51,7 @@ const AdminLayout = ({ children }) => {
   ];
   return (
     <Box className={classes.root}>
-      <AdminHeader />
+      <Header />
       <Drawer
         className={classes.drawer}
         variant="permanent"
