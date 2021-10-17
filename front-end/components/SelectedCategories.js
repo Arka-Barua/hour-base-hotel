@@ -126,7 +126,7 @@ const SelectedCategories = ({ selectionModel, rows }) => {
       <Popup
         openPopup={openEditPopup}
         setOpenPopup={setOpenEditPopup}
-        title={selectedName}
+        title={`Edit ${selectedName}`}
         draggable
         fullScreen={true}
       >

@@ -39,18 +39,28 @@ const schema = yup.object({
     // .test("fileSize", "The file is too large", (value) => {
     //   return value[0] && value[0].size <= 1000000;
     // })
-    .test("type", "We only support image", (value) => {
-      const imgArray = Array.from(value);
-      imgArray && console.log(imgArray);
-      imgArray.map((img) => {
-        console.log(img.type);
-        if (img.type === "image/png" || "image/jpg" || "image/jpeg") return img;
-      });
-    }),
+    .test(
+      "type",
+      "We only support image with JPEG, JPG and PNG type",
+      (value) => {
+        const imgList = Array.from(value);
+        imgList && console.log(imgList);
+        const valid = (imgArray) => {
+          let accept = true;
+          imgArray.map((img) => {
+            console.log(img.type);
+            if (!["image/png", "image/jpg", "image/jpeg"].includes(img.type))
+              accept = false;
+          });
+          return accept;
+        };
+        return value && valid(imgList);
+      }
+    ),
 });
 
 const EditCategoryForm = ({ setOpenEditPopup, editableRow }) => {
-  const { name, maxPeople, price_per_hour, services } = editableRow;
+  const { name, maxPeople, price_per_hour, services, id } = editableRow;
 
   const {
     control,
@@ -71,33 +81,33 @@ const EditCategoryForm = ({ setOpenEditPopup, editableRow }) => {
   const formSubmitHandler = (data) => {
     setSubmitting(true);
     console.log(data);
-    // const serviceList = data.services;
-    // const imageArray = Array.from(data.images);
-    // const formData = new FormData();
+    const serviceList = data.services;
+    const imageArray = Array.from(data.images);
+    const formData = new FormData();
 
-    // formData.append("name", data.name);
-    // formData.append("maxPeople", data.maxPeople);
-    // formData.append("price_per_hour", data.price_per_hour);
-    // formData.append("", data.price_per_hour);
-    // serviceList.map((service) => formData.append("services", service));
-    // imageArray.map((image) => formData.append("images", image));
+    formData.append("name", data.name);
+    formData.append("maxPeople", data.maxPeople);
+    formData.append("price_per_hour", data.price_per_hour);
+    formData.append("", data.price_per_hour);
+    serviceList.map((service) => formData.append("services", service));
+    imageArray.map((image) => formData.append("images", image));
 
-    // api
-    //   .post("/category/create", formData)
-    //   .then((res) => {
-    //     if (res.statusText === "Created") {
-    //       mutate("/category");
-    //       setOpenEditPopup(false);
-    //     }
+    api
+      .patch(`/category/edit/${id}`, formData)
+      .then((res) => {
+        if (res.status < 300) {
+          mutate("/category");
+          setOpenEditPopup(false);
+        }
 
-    //     console.log(res.data);
-    //   })
-    //   .catch((error) => {
-    //     if (error.response) {
-    //       console.log(error.response.data);
-    //       setSubmitError(error.response.data.message);
-    //     }
-    //   });
+        console.log(res.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data);
+          setSubmitError(error.response.data.message);
+        }
+      });
 
     setSubmitting(false);
   };
