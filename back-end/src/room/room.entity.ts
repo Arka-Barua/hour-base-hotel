@@ -6,8 +6,8 @@ export class RoomEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  roomNumber: number;
+  @Column({ unique: true })
+  roomNumber: string;
 
   @Column({ nullable: true })
   status: string;

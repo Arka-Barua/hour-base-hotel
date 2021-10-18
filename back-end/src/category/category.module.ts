@@ -1,4 +1,5 @@
-import { Module } from '@nestjs/common';
+import { RoomModule } from './../room/room.module';
+import { Module, forwardRef } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CategoryController } from './category.controller';
@@ -11,6 +12,7 @@ import { MulterModule } from '@nestjs/platform-express';
     MulterModule.register({
       dest: './upload',
     }),
+    forwardRef(() => RoomModule),
   ],
   providers: [CategoryService],
   controllers: [CategoryController],
