@@ -33,13 +33,12 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const { id, firstname, lastname, roles } = await this.userService.findById(
-      user.id,
-    );
+    const { id, firstname, lastname, roles, mobile, email } =
+      await this.userService.findById(user.id);
     const payload = { sub: user.id };
     return {
       access_token: this.jwtService.sign(payload),
-      user: { id, firstname, lastname },
+      user: { id, firstname, lastname, mobile, email },
       roles,
     };
   }

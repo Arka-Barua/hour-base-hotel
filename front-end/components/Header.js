@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useAuthContext } from "../context/AuthContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Header = () => {
   const {
@@ -103,7 +103,7 @@ const Header = () => {
               ) : null}
               {user ? (
                 <ListItem>
-                  <Link href="#">
+                  <Link href="/profile">
                     <a>{user.firstname}</a>
                   </Link>
                 </ListItem>
