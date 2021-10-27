@@ -1,3 +1,4 @@
+import { BookingEntity } from './../booking/booking.entity';
 import { RoomEntity } from './../room/room.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -25,4 +26,7 @@ export class CategoryEntity {
     onDelete: 'CASCADE',
   })
   rooms: RoomEntity[];
+
+  @OneToMany(() => BookingEntity, (bookingEntity) => bookingEntity.user)
+  bookings: BookingEntity[];
 }
