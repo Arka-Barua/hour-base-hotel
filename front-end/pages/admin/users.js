@@ -7,7 +7,6 @@ import { DataGrid } from "@mui/x-data-grid";
 import CustomToolbar from "../../components/CustomToolbar";
 import CustomNoRowsOverlay from "../../components/CustomNoRowsOverlay";
 import SelectedUsers from "../../components/SelectedUsers";
-import Image from "next/image";
 import { Typography } from "@mui/material";
 
 const columns = [
@@ -98,14 +97,6 @@ const Users = () => {
           <div>loading</div>
         )}
       </div>
-
-      {/* <Image
-        src={`${process.env.API_URL}/category/avibfefa290-ef30-42ca-8d4a-415d2d48fa30.PNG`}
-        width={100}
-        height={20}
-        objectFit="contain"
-        layout="responsive"
-      /> */}
     </AdminLayout>
   );
 };
