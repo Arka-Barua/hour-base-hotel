@@ -23,21 +23,43 @@ export class RoomService {
     return this.roomRepository.findOneOrFail(id);
   }
 
+  async findAllRooms(): Promise<RoomEntity[]> {
+    return this.roomRepository.find({ relations: ['category'] });
+  }
+
+  async deleteRoom(id: string): Promise<any> {
+    return this.roomRepository.delete(id);
+  }
+
   async createRoom(body: CreateRoomDto): Promise<any> {
     const { roomNumber, category } = body;
     const selectedCategory = await this.categoryService.findCategoryById(
       category,
     );
 
-    const existingRoom = await this.roomRepository.find({
+    const existingRoom = await this.roomRepository.findOne({
       where: { roomNumber },
     });
 
-    if (existingRoom)
+    if (existingRoom) {
+      console.log(existingRoom);
       throw new BadRequestException(`Room Number ${roomNumber} already exists`);
-    const newRoom = new RoomEntity();
-    newRoom.roomNumber = roomNumber;
-    newRoom.category = selectedCategory;
-    return this.roomRepository.save(newRoom);
+    } else {
+      const newRoom = new RoomEntity();
+      newRoom.roomNumber = roomNumber;
+      newRoom.category = selectedCategory;
+      return this.roomRepository.save(newRoom);
+    }
+  }
+
+  async editRoom(id: string, body: any): Promise<any> {
+    const { roomNumber, category } = body;
+    const selectedCategory = await this.categoryService.findCategoryById(
+      category,
+    );
+    const editableRoom = await this.roomRepository.findOneOrFail(id);
+    editableRoom.roomNumber = roomNumber;
+    editableRoom.category = selectedCategory;
+    return this.roomRepository.save(editableRoom);
   }
 }
