@@ -1,3 +1,4 @@
+import { CategoryEntity } from './../category/category.entity';
 import { UserEntity } from './../user/user.entity';
 import { PaymentEntity } from './../payment/payment.entity';
 import {
@@ -21,8 +22,8 @@ export class BookingEntity {
   @Column()
   checkOut: Date;
 
-  @Column()
-  roomNumber: number;
+  @OneToOne(() => CategoryEntity, (categoryEntity) => categoryEntity.bookings)
+  category: CategoryEntity;
 
   @Column()
   paymentStatus: boolean;
