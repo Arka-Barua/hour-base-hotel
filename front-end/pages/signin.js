@@ -79,7 +79,7 @@ const SignIn = () => {
         }
       })
       .catch((error) => {
-        console.error(err);
+        console.error(error);
       });
 
     setSubmitting(false);
