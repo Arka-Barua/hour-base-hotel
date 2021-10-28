@@ -76,14 +76,14 @@ const SelectedCategories = ({ selectionModel, rows }) => {
       >
         {select && console.log(select)}
         <Box flex justifyContent="space-around" alignItems="space-around">
-          <Typography variant="h5" style={{ fontWeight: "bold" }}>
+          <Typography variant="h5" style={{ fontWeight: "bold" }} mt={4}>
             Name: <span style={{ fontWeight: "normal" }}>{select.name}</span>
           </Typography>
-          <Typography variant="h5" style={{ fontWeight: "bold" }}>
+          <Typography variant="h5" style={{ fontWeight: "bold" }} mt={1}>
             Max Number of People:{" "}
             <span style={{ fontWeight: "normal" }}>{select.maxPeople}</span>
           </Typography>
-          <Typography variant="h5" style={{ fontWeight: "bold" }}>
+          <Typography variant="h5" style={{ fontWeight: "bold" }} mt={1}>
             Price Per Hour:{" "}
             <span style={{ fontWeight: "normal" }}>
               {select.price_per_hour} TK/-
@@ -93,6 +93,7 @@ const SelectedCategories = ({ selectionModel, rows }) => {
         <Typography
           variant="h5"
           style={{ fontWeight: "bold", marginBottom: 20 }}
+          mt={1}
         >
           Images for {select.name}
         </Typography>
@@ -152,6 +153,7 @@ const SelectedCategories = ({ selectionModel, rows }) => {
       </Popup>
 
       {/* DeletePopup */}
+
       <Popup
         openPopup={openDeletePopup}
         setOpenPopup={setOpenDeletePopup}
