@@ -42,7 +42,7 @@ const SelectedRow = ({ selectionModel, rows }) => {
             View
           </Button>
           <Button variant="contained" disableElevation>
-            Edit
+            Change Role
           </Button>
         </Box>
       ))}
