@@ -1,12 +1,12 @@
 import { Toolbar } from "@mui/material";
 import Header from "./Header";
 
-const UserLayout = ({ children }) => {
+const UserLayout = ({ children, index }) => {
   return (
     <>
-      <Header />
+      <Header index={index} />
       <Toolbar />
-      <div className="userLayout">{children}</div>
+      <div>{children}</div>
     </>
   );
 };

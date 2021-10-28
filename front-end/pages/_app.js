@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@mui/material";
+import { CssBaseline, ScopedCssBaseline, ThemeProvider } from "@mui/material";
 import { AuthWrapper } from "../context/AuthContext";
 import "../styles/globals.css";
 import theme from "../styles/theme";
@@ -9,6 +9,7 @@ const MyApp = ({ Component, pageProps }) => {
     <AuthWrapper>
       <ThemeProvider theme={theme}>
         <SimpleReactLightbox>
+          <CssBaseline />
           <Component {...pageProps} />
         </SimpleReactLightbox>
       </ThemeProvider>
