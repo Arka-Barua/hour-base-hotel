@@ -3,18 +3,23 @@ import useSWR from "swr";
 import AdminLayout from "../../components/AdminLayout";
 import withAuth from "../../HOC/withAuth";
 import withAdmin from "../../HOC/withAdmin";
-
-const fetcher = (url) => api.get(url).then((res) => res.data);
+import { Typography } from "@mui/material";
 
 const Dashboard = () => {
-  const { data, error } = useSWR("/user/profile", fetcher);
-
   return (
     <AdminLayout>
-      <div>
-        <main>Admin Dashboard</main>
-        <pre>{data ? JSON.stringify(data) : ""}</pre>
-        {error && <p>wrong</p>}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Typography variant="h4" mt={2} fontWeight="bold">
+          Welcome to Admin Dashboard
+        </Typography>
+        <p>Follow the sidebar to navigate through pages.</p>
       </div>
     </AdminLayout>
   );
