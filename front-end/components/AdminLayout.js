@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Drawer, List, ListItem, Toolbar } from "@mui/material";
+import { Drawer, List, ListItem, ListItemIcon, Toolbar } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Header from "./Header";
 import { Box } from "@mui/system";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import PeopleIcon from "@mui/icons-material/People";
+import CategoryIcon from "@mui/icons-material/Category";
+import BedroomParentIcon from "@mui/icons-material/BedroomParent";
 
 const drawerWidth = 200;
 
@@ -31,22 +36,27 @@ const AdminLayout = ({ children }) => {
     {
       text: "Dashboard",
       path: "/admin",
+      icon: <DashboardIcon />,
     },
     {
       text: "Orders",
       path: "/admin/orders",
+      icon: <AssignmentIcon />,
     },
     {
       text: "Users",
       path: "/admin/users",
+      icon: <PeopleIcon />,
     },
     {
       text: "Categories",
       path: "/admin/categories",
+      icon: <CategoryIcon />,
     },
     {
       text: "Rooms",
       path: "/admin/rooms",
+      icon: <BedroomParentIcon />,
     },
   ];
   return (
@@ -68,6 +78,7 @@ const AdminLayout = ({ children }) => {
                   router.pathname === item.path ? classes.active : null
                 }
               >
+                <ListItemIcon>{item.icon}</ListItemIcon>
                 <Link href={item.path}>
                   <a style={{ width: "200px" }}>{item.text}</a>
                 </Link>
