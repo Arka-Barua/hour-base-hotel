@@ -3,7 +3,7 @@ import api from "../../axios";
 import AdminLayout from "../../components/AdminLayout";
 import withAdmin from "../../HOC/withAdmin";
 import withAuth from "../../HOC/withAuth";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import { useDemoData } from "@mui/x-data-grid-generator";
 import CustomToolbar from "../../components/CustomToolbar";
 import CustomNoRowsOverlay from "../../components/CustomNoRowsOverlay";
