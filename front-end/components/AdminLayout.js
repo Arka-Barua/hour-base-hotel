@@ -87,8 +87,7 @@ const AdminLayout = ({ children }) => {
           </List>
         </Box>
       </Drawer>
-      {/* <div className={classes.page}>{children}</div> */}
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#F4F4F4" }}>
         <Toolbar />
         {children}
       </Box>
