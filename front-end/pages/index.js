@@ -9,6 +9,7 @@ import { Box } from "@mui/system";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import router from "next/router";
 
 const BoxStyle = {
   position: "absolute",
@@ -107,7 +108,12 @@ const Home = () => {
               <Typography variant="h5" fontWeight="bold" mb={2}>
                 Find Your Rooms
               </Typography>
-              <Button variant="outlined" sx={ButtonStyle} size="large">
+              <Button
+                variant="outlined"
+                sx={ButtonStyle}
+                size="large"
+                onClick={() => router.push("/rooms")}
+              >
                 Check Rooms
               </Button>
             </Container>
