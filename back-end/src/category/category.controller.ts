@@ -75,4 +75,9 @@ export class CategoryController {
   seeUploadedFile(@Param('imgpath') image, @Res() res) {
     return res.sendFile(image, { root: './upload/categoryphoto' });
   }
+
+  @Get('/single/:name')
+  async getCategoryByName(@Param() { name }): Promise<CategoryEntity> {
+    return this.catagoryService.getCategoryByName(name);
+  }
 }

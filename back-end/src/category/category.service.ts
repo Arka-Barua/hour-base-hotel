@@ -106,4 +106,8 @@ export class CategoryService {
     deleteImages(selectedCategory);
     return this.categoryRepository.remove(selectedCategory);
   }
+
+  async getCategoryByName(name: string): Promise<CategoryEntity> {
+    return this.categoryRepository.findOne({ where: { name } });
+  }
 }
