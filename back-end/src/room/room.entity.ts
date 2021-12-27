@@ -1,5 +1,12 @@
+import { BookingEntity } from './../booking/booking.entity';
 import { CategoryEntity } from './../category/category.entity';
-import { Entity, Column, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  OneToMany,
+} from 'typeorm';
 
 @Entity()
 export class RoomEntity {
@@ -16,6 +23,11 @@ export class RoomEntity {
     onDelete: 'SET NULL',
   })
   category: CategoryEntity;
+
+  @OneToMany(() => BookingEntity, (bookingEntity) => bookingEntity.room, {
+    onDelete: 'SET NULL',
+  })
+  bookings: BookingEntity[];
 }
 
 // id, category, number, status, bookings[].
