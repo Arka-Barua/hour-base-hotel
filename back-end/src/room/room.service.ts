@@ -23,6 +23,19 @@ export class RoomService {
     return this.roomRepository.findOneOrFail(id);
   }
 
+  async getRoomsByCategory(categoryId: string): Promise<RoomEntity> {
+    console.log(categoryId);
+    const selectedCategory = await this.categoryService.findCategoryById(
+      categoryId,
+    );
+    console.log(selectedCategory);
+    return this.roomRepository.findOne({
+      where: {
+        category: selectedCategory,
+      },
+    });
+  }
+
   async findAllRooms(): Promise<RoomEntity[]> {
     return this.roomRepository.find({ relations: ['category'] });
   }
