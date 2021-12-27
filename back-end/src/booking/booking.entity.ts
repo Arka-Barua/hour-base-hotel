@@ -1,3 +1,4 @@
+import { RoomEntity } from './../room/room.entity';
 import { CategoryEntity } from './../category/category.entity';
 import { UserEntity } from './../user/user.entity';
 import { PaymentEntity } from './../payment/payment.entity';
@@ -16,23 +17,42 @@ export class BookingEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ type: 'timestamptz' })
   checkIn: Date;
 
-  @Column()
+  @Column({ type: 'timestamptz' })
   checkOut: Date;
 
-  @OneToOne(() => CategoryEntity, (categoryEntity) => categoryEntity.bookings)
-  category: CategoryEntity;
+  @Column()
+  noOfPeople: string;
 
   @Column()
+  totalPrice: number;
+
+  @Column()
+  stayDuration: number;
+
+  @ManyToOne(() => CategoryEntity, (categoryEntity) => categoryEntity.bookings)
+  category: CategoryEntity;
+
+  @ManyToOne(() => RoomEntity, (roomEntity) => roomEntity.bookings, {
+    nullable: true,
+  })
+  room: RoomEntity;
+
+  @Column({ nullable: true })
   paymentStatus: boolean;
 
-  @OneToOne(() => PaymentEntity, (paymentEntity) => paymentEntity.booking)
+  @OneToOne(() => PaymentEntity, (paymentEntity) => paymentEntity.booking, {
+    nullable: true,
+  })
   @JoinColumn()
   payment: PaymentEntity;
 
-  @ManyToOne(() => UserEntity, (userEntity) => userEntity.bookings)
+  @ManyToOne(() => UserEntity, (userEntity) => userEntity.bookings, {
+    onDelete: 'NO ACTION',
+    lazy: true,
+  })
   user: UserEntity;
 
   @Column({
