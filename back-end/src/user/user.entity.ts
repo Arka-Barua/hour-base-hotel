@@ -22,7 +22,10 @@ export class UserEntity {
   @Column({ unique: true })
   mobile: string;
 
-  @OneToMany(() => BookingEntity, (bookingEntity) => bookingEntity.user)
+  @OneToMany(() => BookingEntity, (bookingEntity) => bookingEntity.user, {
+    lazy: true,
+    nullable: true,
+  })
   bookings: BookingEntity[];
 
   @Column({
