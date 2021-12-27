@@ -22,11 +22,12 @@ export class CategoryService {
         'price_per_hour',
         'services',
       ],
+      relations: ['rooms'],
     });
   }
 
   async findCategoryById(id: string): Promise<CategoryEntity> {
-    return this.categoryRepository.findOneOrFail(id);
+    return this.categoryRepository.findOne(id);
   }
 
   async createCategory(
