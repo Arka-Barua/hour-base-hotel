@@ -9,6 +9,7 @@ import { RoomEntity } from './room.entity';
   imports: [
     TypeOrmModule.forFeature([RoomEntity]),
     forwardRef(() => CategoryModule),
+    forwardRef(() => RoomModule),
   ],
   providers: [RoomService],
   controllers: [RoomController],
