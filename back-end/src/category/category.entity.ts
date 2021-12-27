@@ -27,6 +27,6 @@ export class CategoryEntity {
   })
   rooms: RoomEntity[];
 
-  @OneToMany(() => BookingEntity, (bookingEntity) => bookingEntity.user)
+  @OneToMany(() => BookingEntity, (bookingEntity) => bookingEntity.category)
   bookings: BookingEntity[];
 }
