@@ -106,6 +106,32 @@ const Header = ({ index }) => {
                   <a>Rooms</a>
                 </Link>
               </ListItem>
+              {user && !isAdmin && (
+                <ListItem sx={hoverStyle}>
+                  <Link href="/bookings">
+                    <a>Bookings</a>
+                  </Link>
+                </ListItem>
+              )}
+
+              {isAdmin ? (
+                <ListItem sx={hoverStyle}>
+                  <Link href="/admin">
+                    <a>Admin</a>
+                  </Link>
+                </ListItem>
+              ) : null}
+              {user ? (
+                <>
+                  <ListItem sx={hoverStyle}>
+                    <Link href="/profile">
+                      <a>{user.firstname}</a>
+                    </Link>
+                  </ListItem>
+                </>
+              ) : (
+                ""
+              )}
               {!isAuthenticated ? (
                 menuItems.map((item) => (
                   <ListItem key={item.text} sx={hoverStyle}>
@@ -122,22 +148,6 @@ const Header = ({ index }) => {
                     </a>
                   </Link>
                 </ListItem>
-              )}
-              {isAdmin ? (
-                <ListItem sx={hoverStyle}>
-                  <Link href="/admin">
-                    <a>Admin</a>
-                  </Link>
-                </ListItem>
-              ) : null}
-              {user ? (
-                <ListItem sx={hoverStyle}>
-                  <Link href="/profile">
-                    <a>{user.firstname}</a>
-                  </Link>
-                </ListItem>
-              ) : (
-                ""
               )}
             </List>
           </div>
