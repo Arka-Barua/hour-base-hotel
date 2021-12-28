@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 import Popup from "./Popup";
 
-const SelectedRow = ({ selectionModel, rows }) => {
+const SelectedUsers = ({ selectionModel, rows }) => {
   const selected = rows.filter((row) => selectionModel.includes(row.id));
   const [openPopup, setOpenPopup] = useState(false);
   const [select, setSelect] = useState("");
@@ -65,4 +65,4 @@ const SelectedRow = ({ selectionModel, rows }) => {
   );
 };
 
-export default SelectedRow;
+export default SelectedUsers;
