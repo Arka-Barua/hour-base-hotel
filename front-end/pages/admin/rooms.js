@@ -126,7 +126,6 @@ const Rooms = () => {
         setOpenPopup={setOpenPopup}
         title="Add New Room"
         draggable
-        // TransitionComponent={Transition}
         fullScreen
       >
         <Box>
